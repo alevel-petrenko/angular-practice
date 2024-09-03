@@ -1,0 +1,18 @@
+h1, h2{color:navy;}
+
+p{font-size:16px;}
+
+/* :host {
+    font-family: Verdana;
+    color: #555;
+} */
+
+:host {
+    display: block;
+    padding: 10px;
+    border: 1px solid navy;
+}
+
+.highlight {
+    color: red;
+  }
