@@ -52,4 +52,6 @@
 }
 </p>
 
-<child-comp [shitty]="message"><h2>It's Briney bit*h</h2></child-comp>
+<h2>Number of clicks: {{clicks}}</h2>
+
+<child-comp (onChanged)="onChanged($event)" [shittyText]="message"><h2>It's Briney bit*h</h2></child-comp>

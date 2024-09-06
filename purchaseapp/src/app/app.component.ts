@@ -23,10 +23,11 @@ class Item {
 })
 
 export class AppComponent {
-  message: string = "0 is the worst thing on the Earth!";
+  message: string = "war is the worst thing on the Earth!";
   name: string = "Tom";
   text: string = "";
   price: number = 0;
+  clicks: number = 0;
 
   items: Item[] = [
     { purchase: "Bread", done: false, price: 15.9 },
@@ -45,5 +46,9 @@ export class AppComponent {
 
   getMaxPrice(): number{
     return Math.max(...this.items.map(item => item.price));
+  }
+
+  onChanged(increased:boolean){
+    increased ? this.clicks++ : this.clicks--;
   }
 }
