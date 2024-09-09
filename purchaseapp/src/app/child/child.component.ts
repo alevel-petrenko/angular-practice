@@ -1,20 +1,23 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 
 @Component({
     selector: 'child-comp',
     standalone: true,
+    imports: [FormsModule],
     styles: `h2 {font-size:30px; color:red;}`,
     template: `<ng-content></ng-content>
         <h2>Here is what I have: {{_shittyText}}</h2>
-        <button (click)="change(true)">+</button>
-        <button (click)="change(false)">-</button>`
+        <input [ngModel]="userName" (ngModelChange)="onNameChange($event)" />`
 })
 export class ChildComponent {
     _shittyText: string = "";
-    @Output() onChanged = new EventEmitter<boolean>();
+    @Input() userName:string = "";
+    @Output() userNameChange = new EventEmitter<string>();
 
-    change(increase: boolean) {
-        this.onChanged.emit(increase);
+    onNameChange(model: string){
+        this.userName = model;
+        this.userNameChange.emit(model);
     }
 
     @Input()

@@ -52,6 +52,8 @@
 }
 </p>
 
-<h2>Number of clicks: {{clicks}}</h2>
+<child-comp [shittyText]="message" [(userName)]="name">
+  <h2>It's Briney bit*h from parent heading</h2>
+</child-comp>
 
-<child-comp (onChanged)="onChanged($event)" [shittyText]="message"><h2>It's Briney bit*h</h2></child-comp>
+<div>The name you choose: {{name}}</div>
