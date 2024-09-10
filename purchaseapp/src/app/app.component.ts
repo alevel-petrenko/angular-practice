@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import {ChildComponent} from './child/child.component';
+import { ChildComponent } from './child/child.component';
 
 class Item {
   purchase: string;
