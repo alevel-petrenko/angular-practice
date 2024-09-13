@@ -1,15 +1,35 @@
-import { Component, OnInit, Input, OnDestroy, OnChanges, SimpleChanges } from "@angular/core";
+import { Component, OnInit, Input, OnDestroy, SimpleChanges } from "@angular/core";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: "my-app",
     standalone: true,
-    template: `<p>Hello, it's a test value</p>`
+    imports: [NgClass],
+    template: `
+        <div [ngClass]="currentClasses">
+            Hello, it's a test value {{page}} from test component
+        </div>`,
+    styles: [
+        `.myVerdanaFont{font-size:15; font-family:Verdana;}
+        .navyColor{color:navy;}`
+    ]
 })
 
 export class TestComponent implements OnInit, OnDestroy {
     @Input() name: string = "";
+    page: number = 0;
+    isVerdana = true;
+    isNavy = true;
+ 
+    currentClasses={
+        myVerdanaFont: this.isVerdana,
+        navyColor: this.isNavy
+    }
 
-    constructor(){ console.log("constructor"); }
+    next() { this.page++; }
+    previous() { this.page--; }
+
+    constructor() { console.log("constructor"); }
     ngOnInit() { console.log("onInit"); }
     ngOnDestroy() { console.log("onDestroy"); }
 

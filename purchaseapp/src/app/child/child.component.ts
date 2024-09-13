@@ -1,15 +1,18 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { TestComponent } from '../test.component'
+import { HighlightDirective } from '../directive/appHighlight.directive'
 
 @Component({
     selector: 'child-comp',
     standalone: true,
-    imports: [FormsModule, TestComponent],
+    imports: [FormsModule, TestComponent, HighlightDirective],
     styles: `h2 {font-size:30px; color:red;}`,
     template: `<ng-content></ng-content>
-        <my-app [name]="userName"></my-app>
-        <h2>Here is what I have: {{_shittyText}}</h2>
+        <my-app #pageCount [name]="userName"></my-app>
+        <button (click)="pageCount.next()">Next page</button>
+        <button (click)="pageCount.previous()">Previous page</button>
+        <h2 appHighlight>Here is what I have: {{_shittyText}}</h2>
         <input [ngModel]="userName" (ngModelChange)="onNameChange($event)" />`
 })
 export class ChildComponent {

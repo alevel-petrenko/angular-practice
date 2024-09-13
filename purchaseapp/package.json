@@ -2,7 +2,6 @@
     "name": "purchaseapp",
     "version": "1.0.0",
     "description": "First Angular 17 Project",
-    "author": "Eugene Popov metanit.com",
     "scripts": {
       "ng": "ng",
       "start": "ng serve",
