@@ -34,6 +34,13 @@
 </p>
 
 <input type="text" [(ngModel)]="name" />
+<button (click)="addName()">Add current name</button>
+
+<ol>
+  @for(item of names; track $index){
+    <li>{{item}}</li>
+  }
+</ol>
 
 <p>My real name is
 @switch (name) {

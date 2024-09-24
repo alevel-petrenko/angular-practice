@@ -1,12 +1,12 @@
-import { Component, OnInit, Input, OnDestroy, SimpleChanges } from "@angular/core";
-import { NgClass } from "@angular/common";
+import { Component, OnInit, Input, OnDestroy, SimpleChanges } from '@angular/core';
+import { NgClass } from '@angular/common';
 
 @Component({
-    selector: "my-app",
+    selector: 'my-app',
     standalone: true,
     imports: [NgClass],
     template: `
-        <div [ngClass]="currentClasses">
+        <div [ngClass]='currentClasses'>
             Hello, it's a test value {{page}} from test component
         </div>`,
     styles: [
@@ -16,7 +16,7 @@ import { NgClass } from "@angular/common";
 })
 
 export class TestComponent implements OnInit, OnDestroy {
-    @Input() name: string = "";
+    @Input() name: string = '';
     page: number = 0;
     isVerdana = true;
     isNavy = true;
@@ -29,9 +29,9 @@ export class TestComponent implements OnInit, OnDestroy {
     next() { this.page++; }
     previous() { this.page--; }
 
-    constructor() { console.log("constructor"); }
-    ngOnInit() { console.log("onInit"); }
-    ngOnDestroy() { console.log("onDestroy"); }
+    constructor() { console.log('constructor'); }
+    ngOnInit() { console.log('onInit'); }
+    ngOnDestroy() { console.log('onDestroy'); }
 
     ngOnChanges(changes: SimpleChanges) {
         for (let propName in changes) {
