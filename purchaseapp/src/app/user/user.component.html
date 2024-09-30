@@ -1,0 +1,27 @@
+<div>
+    <p>
+        <label>Name</label><br>
+        <input name="name" [(ngModel)]="newUser.name" />
+    </p>
+    <p>
+        <label>Age</label><br>
+        <input type="number" name="age" [(ngModel)]="newUser.age" />
+    </p>
+    <p>
+        <label>Work</label><br>
+        <select name="company" [(ngModel)]="newUser.company">
+            @for(comp of companies; track $index){
+            <option [value]="comp">{{comp}}</option>
+            }
+        </select>
+    </p>
+    <button (click)="addUser()">Add new user</button>
+</div>
+<div>
+    <h3>All users:</h3>
+    <ul>
+        @for(user of users; track $index){
+        <li>{{user.name}} ({{user.company}}) - {{user.age}}</li>
+        }
+    </ul>
+</div>

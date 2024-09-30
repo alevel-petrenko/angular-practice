@@ -33,6 +33,12 @@
   Wow, you have the most expensive item - <span class="highlight"> {{ getMaxPrice() }}</span>
 </p>
 
+<p>------------------------------------------------------------------------------------------------------</p>
+
+<user></user>
+
+<p>------------------------------------------------------------------------------------------------------</p>
+
 <input type="text" [(ngModel)]="name" />
 <button (click)="addName()">Add current name</button>
 
@@ -43,7 +49,7 @@
 </ol>
 
 <p>My real name is
-@switch (name) {
+  @switch (name) {
     @case ('Todd') {
         Teddy
     }
@@ -56,11 +62,15 @@
     @default {
         ... What does {{name}} mean?
     }
-}
+  }
 </p>
+
+<p>------------------------------------------------------------------------------------------------------</p>
 
 <child-comp [shittyText]="message" [(userName)]="name">
   <h2>It's Briney bit*h from parent heading</h2>
 </child-comp>
+
+<p>------------------------------------------------------------------------------------------------------</p>
 
 <div>The name you chose: {{name}}</div>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ChildComponent } from './child/child.component';
+import { UserComponent } from './user/user.component'
 import { DataService } from '../app/service/data.service';
 import { MyLogService } from '../app/service/my-log.service';
 
@@ -19,7 +20,7 @@ class Item {
 @Component({
   selector: 'purchase-app',
   standalone: true,
-  imports: [FormsModule, ChildComponent],
+  imports: [FormsModule, ChildComponent, UserComponent],
   providers: [DataService, MyLogService],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
