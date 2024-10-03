@@ -22,4 +22,9 @@ export class UserComponent {
     addUser() {
         this.users.push({ ...this.newUser });
     }
+
+    onModelChanged() {
+        if (this.newUser.name === 'admin')
+            this.newUser.name = 'undefined';
+    }
 }
