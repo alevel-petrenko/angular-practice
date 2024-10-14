@@ -8,10 +8,7 @@ import { COURSES } from '../db-data';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  coreCourse: Course = COURSES[0];
-  rxjsCourse: Course = COURSES[1];
-  ngrxCourse: Course = COURSES[2];
-
+  courses: Course[] = COURSES;
 
   onMyCustomClick(course: Course) {
     console.log('event fired in card component', course);
