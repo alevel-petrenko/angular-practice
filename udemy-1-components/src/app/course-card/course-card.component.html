@@ -1,8 +1,26 @@
-<div class="course-card">
+<div class="course-card" [ngClass]="getCardClasses()">
 
     <div class="course-title">{{ course.description }}</div>
     <img width="300" alt="Angular Logo" [src]="course.iconUrl">
     <div class="course-description">{{course.longDescription}}</div>
 
     <button (click)="onViewClicked()">View course</button>
+
+    <div class="margin-top-15">
+        @switch (course.category) {
+            @case ("BEGINNER") {
+            <div class="category">Beginner</div>
+            }
+            @case ("INTERMEDIATE") {
+            <div class="category">Intermediate</div>
+            }
+            @case ("ADVANCED") {
+            <div class="category">Advanced</div>
+            }
+            @default {
+            <div class="category warn">Unknown</div>
+            }
+        }
+    </div>
+    <div class="margin-top-15">Start date: {{course.startDate | date:'longDate'}}</div>
 </div>

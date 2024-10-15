@@ -10,9 +10,14 @@ export class CourseCardComponent {
   @Input({ required: true }) course: Course;
   @Output('myCustomClick') eventEmitter = new EventEmitter<Course>()
 
-  onViewClicked() {
+  onViewClicked(): void {
     console.log('event fired in card component');
 
     this.eventEmitter.emit(this.course);
+  }
+
+  getCardClasses(): string {
+    if (this.course.category === 'BEGINNER')
+      return 'beginner';
   }
 }
