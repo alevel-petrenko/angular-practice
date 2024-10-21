@@ -1,11 +1,16 @@
 <div class="top-menu">
-    <img class="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
+    <img #logoRef class="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
 </div>
 
 <div class="courses">
     @for(course of courses; track $index) {
-    <course-card [class.is-first]="$first" [class.is-last]="$last" [course]="course" [class.is-odd]="$odd"
-        [class.is-even]="$even" (myCustomClick)="onMyCustomClick($event)" />
+    <course-card #cardRef [class.is-first]="$first" [class.is-last]="$last" [course]="course" [class.is-odd]="$odd"
+        [class.is-even]="$even" (myCustomClick)="onMyCustomClick($event)">
+        <h3 #lessons>Total lessons: {{$index+1}}</h3>
+        <div>
+            <h3>You shouldn't see this!</h3>
+        </div>
+    </course-card>
     }
     @empty {
     <h2 style="text-align: center">No courses available</h2>

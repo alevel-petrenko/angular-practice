@@ -1,10 +1,10 @@
 <div class="course-card" [ngClass]="getCardClasses()">
 
     <div class="course-title">{{ course.description }}</div>
-    <img width="300" alt="Angular Logo" [src]="course.iconUrl">
-    <div class="course-description">{{course.longDescription}}</div>
 
-    <button (click)="onViewClicked()">View course</button>
+    <ng-content select="h3"></ng-content>
+
+    <img width="300" alt="Angular Logo" [src]="course.iconUrl">
 
     <div class="margin-top-15">
         @switch (course.category) {
@@ -22,5 +22,9 @@
             }
         }
     </div>
+
+    <div class="course-description">{{course.longDescription}}</div>
+
     <div class="margin-top-15">Start date: {{course.startDate | date:'longDate'}}</div>
+    <button (click)="onViewClicked()">View course</button>
 </div>

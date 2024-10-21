@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AfterViewInit, Component, ContentChild, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Course } from '../model/course';
 
 @Component({
@@ -6,9 +6,14 @@ import { Course } from '../model/course';
   templateUrl: './course-card.component.html',
   styleUrl: './course-card.component.css'
 })
-export class CourseCardComponent {
+export class CourseCardComponent implements AfterViewInit {
   @Input({ required: true }) course: Course;
   @Output('myCustomClick') eventEmitter = new EventEmitter<Course>()
+  @ContentChild('lessons') lessons: ElementRef;
+
+  ngAfterViewInit(): void {
+    console.log('lessons', this.lessons);
+  }
 
   onViewClicked(): void {
     console.log('event fired in card component');
