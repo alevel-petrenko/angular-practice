@@ -6,7 +6,8 @@
     @for(course of courses; track $index) {
     <course-card #cardRef [class.is-first]="$first" [class.is-last]="$last" [course]="course" [class.is-odd]="$odd"
         [class.is-even]="$even" (myCustomClick)="onMyCustomClick($event)">
-        <h3 #lessons>Total lessons: {{$index+1}}</h3>
+        <course-image [course]="course"></course-image>
+        <h3 #lessons>Total lessons: {{course.id +1}}</h3>
         <div>
             <h3>You shouldn't see this!</h3>
         </div>

@@ -3,23 +3,22 @@
     <div class="course-title">{{ course.description }}</div>
 
     <ng-content select="h3"></ng-content>
-
-    <img width="300" alt="Angular Logo" [src]="course.iconUrl">
+    <ng-content select="course-image"></ng-content>
 
     <div class="margin-top-15">
         @switch (course.category) {
-            @case ("BEGINNER") {
-            <div class="category">Beginner</div>
-            }
-            @case ("INTERMEDIATE") {
-            <div class="category">Intermediate</div>
-            }
-            @case ("ADVANCED") {
-            <div class="category">Advanced</div>
-            }
-            @default {
-            <div class="category warn">Unknown</div>
-            }
+        @case ("BEGINNER") {
+        <div class="category">Beginner</div>
+        }
+        @case ("INTERMEDIATE") {
+        <div class="category">Intermediate</div>
+        }
+        @case ("ADVANCED") {
+        <div class="category">Advanced</div>
+        }
+        @default {
+        <div class="category warn">Unknown</div>
+        }
         }
     </div>
 

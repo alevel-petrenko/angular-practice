@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ContentChild, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Course } from '../model/course';
+import { CourseImageComponent } from '../course-image/course-image.component';
 
 @Component({
   selector: 'course-card',
@@ -10,9 +11,11 @@ export class CourseCardComponent implements AfterViewInit {
   @Input({ required: true }) course: Course;
   @Output('myCustomClick') eventEmitter = new EventEmitter<Course>()
   @ContentChild('lessons') lessons: ElementRef;
+  @ContentChild(CourseImageComponent) image: CourseImageComponent;
 
   ngAfterViewInit(): void {
     console.log('lessons', this.lessons);
+    console.log('image in Card component', this.image);
   }
 
   onViewClicked(): void {
