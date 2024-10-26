@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ContentChild, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ContentChild, ElementRef, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { Course } from '../model/course';
 import { CourseImageComponent } from '../course-image/course-image.component';
 
@@ -9,6 +9,7 @@ import { CourseImageComponent } from '../course-image/course-image.component';
 })
 export class CourseCardComponent implements AfterViewInit {
   @Input({ required: true }) course: Course;
+  @Input() imageTemplate: TemplateRef<any>;
   @Output('myCustomClick') eventEmitter = new EventEmitter<Course>()
   @ContentChild('lessons') lessons: ElementRef;
   @ContentChild(CourseImageComponent) image: CourseImageComponent;

@@ -8,12 +8,11 @@
 </ng-template>
 
 <ng-container *ngTemplateOutlet="welcomeMessage; context: {name: courses[0].description}"></ng-container>
-<ng-container *ngTemplateOutlet="welcomeMessage; context: {name: courses[5].description}"></ng-container>
 
 <div class="courses">
     @for(course of courses; track $index) {
     <course-card #cardRef [class.is-first]="$first" [class.is-last]="$last" [course]="course" [class.is-odd]="$odd"
-        [class.is-even]="$even" (myCustomClick)="onMyCustomClick($event)">
+        [class.is-even]="$even" (myCustomClick)="onMyCustomClick($event)" [imageTemplate]="blankImage">
         <course-image [course]="course"></course-image>
         <h3 #lessons>Total lessons: {{course.id +1}}</h3>
         <div>
@@ -25,3 +24,8 @@
     <h2 style="text-align: center">No courses available</h2>
     }
 </div>
+
+<ng-template #blankImage let-courseName="name">
+    <p class="warn">{{courseName}} doesn't have image yet.</p>
+    <img src="../assets/empty-image.png">
+</ng-template>

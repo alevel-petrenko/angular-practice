@@ -60,7 +60,8 @@ export const COURSES: Course[] = [
         id: 7,
         description: 'Angular Advanced Course',
         longDescription: "Learn Advanced Angular functionality typically used in Library Development. Advanced Components, Directives, Testing, Npm",
-        iconUrl: 'https://angular-academy.s3.amazonaws.com/thumbnails/advanced_angular-small-v3.png',
+        // iconUrl: 'https://angular-academy.s3.amazonaws.com/thumbnails/advanced_angular-small-v3.png',
+        iconUrl: '',
         category: 'ADVANCED',
         lessonsCount: 15,
         startDate: new Date('December 1, 2024 10:00:00')
