@@ -2,6 +2,14 @@
     <img #logoRef class="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
 </div>
 
+<ng-template #welcomeMessage let-courseName="name">
+    <h2 style="text-align: center">Our university welcomes new students. We highly recommend to start your education
+        with '{{courseName}}'</h2>
+</ng-template>
+
+<ng-container *ngTemplateOutlet="welcomeMessage; context: {name: courses[0].description}"></ng-container>
+<ng-container *ngTemplateOutlet="welcomeMessage; context: {name: courses[5].description}"></ng-container>
+
 <div class="courses">
     @for(course of courses; track $index) {
     <course-card #cardRef [class.is-first]="$first" [class.is-last]="$last" [course]="course" [class.is-odd]="$odd"
