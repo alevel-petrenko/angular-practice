@@ -9,24 +9,17 @@ import {CourseCardComponent} from './course-card/course-card.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements AfterViewInit {
-
     courses = COURSES;
-
 
     @ViewChildren(CourseCardComponent, {read: ElementRef})
     cards : QueryList<ElementRef>;
 
-
     constructor() {
-
     }
 
     ngAfterViewInit() {
-
     }
 
     onCourseSelected(course:Course) {
-
     }
-
 }
