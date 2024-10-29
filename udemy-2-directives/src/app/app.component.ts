@@ -20,6 +20,10 @@ export class AppComponent implements AfterViewInit {
     ngAfterViewInit() {
     }
 
+    onHighlight(isHighlighted: boolean){
+      console.log(`Selected = ${isHighlighted}`);
+    }
+
     onCourseSelected(course:Course) {
     }
 }
