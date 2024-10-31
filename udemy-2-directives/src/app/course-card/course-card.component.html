@@ -1,17 +1,14 @@
-
 <div class="course-card" *ngIf="course" #container>
 
     <div class="course-title">
         {{ cardIndex || '' + ' ' + course.description }}
     </div>
 
-    <ng-content select="course-image"
-                *ngIf="course.iconUrl; else noImage"></ng-content>
+    <ng-content select="course-image" *ngIf="course.iconUrl; else noImage"></ng-content>
 
     <ng-template #noImage>
 
-        <ng-container
-                *ngTemplateOutlet="noImageTpl;context: {description:course.description}">
+        <ng-container *ngTemplateOutlet="noImageTpl;context: {description:course.description}">
 
         </ng-container>
 
@@ -32,9 +29,3 @@
     <button (click)="onCourseViewed()">View Course</button>
 
 </div>
-
-
-
-
-
-

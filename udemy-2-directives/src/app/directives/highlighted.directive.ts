@@ -1,11 +1,12 @@
 import { Directive, EventEmitter, HostBinding, HostListener, Input, Output } from '@angular/core';
 
 @Directive({
-  selector: '[highlighted]'
+  selector: '[highlighted]',
+  exportAs: 'hl'
 })
 export class HighlightedDirective {
   @Input('highlighted') isHighlighted: boolean;
-  @Output() toHighlight = new EventEmitter();
+  @Output() highlightEmitter = new EventEmitter();
 
   constructor() {
     console.log('Highlighted directive is created');
@@ -20,12 +21,17 @@ export class HighlightedDirective {
   mouseOver($event) {
     console.log($event);
     this.isHighlighted = true;
-    this.toHighlight.emit(this.isHighlighted);
+    this.highlightEmitter.emit(this.isHighlighted);
   }
 
   @HostListener('mouseleave')
   mouseLeave() {
     this.isHighlighted = false;
-    this.toHighlight.emit(this.isHighlighted);
+    this.highlightEmitter.emit(this.isHighlighted);
+  }
+
+  public toggle() {
+    this.isHighlighted = !this.isHighlighted;
+    this.highlightEmitter.emit(this.isHighlighted);
   }
 }
