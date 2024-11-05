@@ -1,0 +1,31 @@
+<div class="top-menu">
+    <img #logoRef class="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
+</div>
+
+<ng-template #welcomeMessage let-courseName="name">
+    <h2 style="text-align: center">Our university welcomes new students. We highly recommend to start your education
+        with '{{courseName}}'</h2>
+</ng-template>
+
+<ng-container *ngTemplateOutlet="welcomeMessage; context: {name: courses[0].description}"></ng-container>
+
+<div class="courses">
+    @for(course of courses; track $index) {
+    <course-card #cardRef [class.is-first]="$first" [class.is-last]="$last" [course]="course" [class.is-odd]="$odd"
+        [class.is-even]="$even" (myCustomClick)="onMyCustomClick($event)" [imageTemplate]="blankImage">
+        <course-image [course]="course"></course-image>
+        <h3 #lessons>Total lessons: {{course.id +1}}</h3>
+        <div>
+            <h3>You shouldn't see this!</h3>
+        </div>
+    </course-card>
+    }
+    @empty {
+    <h2 style="text-align: center">No courses available</h2>
+    }
+</div>
+
+<ng-template #blankImage let-courseName="name">
+    <p class="warn">{{courseName}} doesn't have image yet.</p>
+    <img src="../assets/empty-image.png">
+</ng-template>
