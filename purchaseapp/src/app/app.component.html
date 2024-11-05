@@ -1,0 +1,76 @@
+<h1>Purchase list:</h1>
+<div>
+  <p>
+    <label>Product</label><br />
+    <input [(ngModel)]="text" />
+  </p>
+  <p>
+    <label>Price</label><br />
+    <input type="number" [(ngModel)]="price" />
+  </p>
+  <button (click)="addItem(text, price)">Add</button>
+</div>
+<br />
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Price</th>
+      <th>Purchased</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of items; track item.purchase) {
+    <tr>
+      <td>{{ item.purchase }}</td>
+      <td>{{ item.price }}</td>
+      <td><input type="checkbox" [(ngModel)]="item.done" /></td>
+    </tr>
+    }
+  </tbody>
+</table>
+<p>
+  Wow, you have the most expensive item - <span class="highlight"> {{ getMaxPrice() }}</span>
+</p>
+
+<p>------------------------------------------------------------------------------------------------------</p>
+
+<user></user>
+
+<p>------------------------------------------------------------------------------------------------------</p>
+
+<input type="text" [(ngModel)]="name" />
+<button (click)="addName()">Add current name</button>
+
+<ol>
+  @for(item of names; track $index){
+    <li>{{item}}</li>
+  }
+</ol>
+
+<p>My real name is
+  @switch (name) {
+    @case ('Todd') {
+        Teddy
+    }
+    @case ('Mark') {
+        Markelllo
+    }
+    @case ('Aaaa') {
+        Mmmmmm
+    }
+    @default {
+        ... What does {{name}} mean?
+    }
+  }
+</p>
+
+<p>------------------------------------------------------------------------------------------------------</p>
+
+<child-comp [shittyText]="message" [(userName)]="name">
+  <h2>It's Briney bit*h from parent heading</h2>
+</child-comp>
+
+<p>------------------------------------------------------------------------------------------------------</p>
+
+<div>The name you chose: {{name}}</div>

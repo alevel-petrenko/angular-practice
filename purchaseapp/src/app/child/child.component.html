@@ -1,0 +1,7 @@
+<ng-content></ng-content>
+<my-app #pageCount [name]="userName"></my-app>
+<button (click)="pageCount.next()">Next page</button>
+<button (click)="pageCount.previous()">Previous page</button>
+<h2 appHighlight>Here is what I have: {{_shittyText}}</h2>
+<h3 [bold]="'25px'" [defaultSize]="'18px'">Try me!</h3>
+<input [ngModel]="userName" (ngModelChange)="onNameChange($event)" />
