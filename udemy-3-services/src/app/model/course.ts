@@ -1,5 +1,3 @@
-
-
 export interface Course {
     id:number;
     description:string;
@@ -7,4 +5,5 @@ export interface Course {
     longDescription: string;
     category:string;
     lessonsCount:number;
+    startDate: Date;
 }
