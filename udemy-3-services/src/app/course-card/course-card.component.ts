@@ -11,8 +11,7 @@ import {
     QueryList,
     ViewEncapsulation
 } from '@angular/core';
-import {Course} from '../model/course';
-import {CourseImageComponent} from '../course-image/course-image.component';
+import { Course } from '../model/course';
 
 @Component({
     selector: 'course-card',
@@ -30,23 +29,17 @@ export class CourseCardComponent implements OnInit {
     @Output('courseChanged')
     courseEmitter = new EventEmitter<Course>();
 
-
     constructor() {
-
     }
 
     ngOnInit() {
-
     }
 
-
-    onSaveClicked(description:string) {
-
-        this.courseEmitter.emit({...this.course, description});
-
+    onSaveClicked(description: string) {
+        if (this.course) {
+            console.log("Course is OK!", this.course);
+        }
+        console.log(`New description: ${description}`);
+        this.courseEmitter.emit({ ...this.course, description });
     }
-
-
-
-
 }
