@@ -3,10 +3,10 @@ import { Observable } from 'rxjs';
 import { Course } from '../model/course';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
-//temp
-// @Injectable({
-//   providedIn: 'root'
-// })
+@Injectable({
+  providedIn: 'root',
+  useClass: CoursesService
+})
 export class CoursesService {
   constructor(private http: HttpClient) { }
 

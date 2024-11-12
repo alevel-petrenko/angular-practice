@@ -9,19 +9,19 @@ import { Courses_Service, coursesServiceProvider } from './providers/courses-ser
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [
-    {
-      provide: Courses_Service,
-      useFactory: coursesServiceProvider,
-      deps: [HttpClient]
-    }
-  ]
+  // providers: [
+  //   {
+  //     provide: Courses_Service,
+  //     useFactory: coursesServiceProvider,
+  //     deps: [HttpClient]
+  //   }
+  // ]
 })
 export class AppComponent implements OnInit {
   public allCourses: Course[];
   public allCourses$: Observable<Course[]>;
 
-  constructor(@Inject(Courses_Service) private coursesService: CoursesService) {
+  constructor(private coursesService: CoursesService) {
   }
 
   ngOnInit() {
