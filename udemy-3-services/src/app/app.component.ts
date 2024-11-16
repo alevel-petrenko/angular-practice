@@ -22,7 +22,8 @@ export class AppComponent implements OnInit {
   public allCourses: Course[];
   public allCourses$: Observable<Course[]>;
 
-  constructor(private coursesService: CoursesService, @Inject(Config_Token) private config: AppConfig) {
+  constructor(private coursesService: CoursesService,
+    @Inject(Config_Token) private config: AppConfig) {
     console.log(`AppConfig is set up on ` + config.apiUrl);
   }
 
