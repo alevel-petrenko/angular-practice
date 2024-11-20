@@ -1,6 +1,8 @@
 import {
     AfterContentInit,
     AfterViewInit,
+    Attribute,
+    ChangeDetectionStrategy,
     Component,
     ContentChildren,
     ElementRef,
@@ -16,10 +18,10 @@ import { Course } from '../model/course';
 @Component({
     selector: 'course-card',
     templateUrl: './course-card.component.html',
-    styleUrls: ['./course-card.component.css']
+    styleUrls: ['./course-card.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseCardComponent implements OnInit {
-
     @Input()
     course: Course;
 
@@ -29,11 +31,17 @@ export class CourseCardComponent implements OnInit {
     @Output('courseChanged')
     courseEmitter = new EventEmitter<Course>();
 
-    constructor() {
+    constructor(@Attribute('testType') private type: string // allows not to track changes
+    ) {
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
+        console.log(this.type);
     }
+
+    // onTitleChanged(newtitle: string) {
+    //     this.course.description = newtitle;
+    // }
 
     onSaveClicked(description: string) {
         if (this.course) {

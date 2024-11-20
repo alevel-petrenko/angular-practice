@@ -6,8 +6,8 @@
 
   <!-- <div class="courses">
     <course-card *ngFor="let course of (allCourses$ | async )" [course]="course"> -->
-  <div class="courses" *ngIf="allCourses$ | async as courses">
-    <course-card *ngFor="let course of courses; let i = index" (courseChanged)="save($event)" [course]="course"
+  <div class="courses" *ngIf="(allCourses$ | async) as courses">
+    <course-card *ngFor="let course of courses; let i = index" (courseChanged)="save($event)" testType='custom type' [course]="course"
       [cardIndex]="i + 1">
 
       <course-image [src]="course.iconUrl"></course-image>
