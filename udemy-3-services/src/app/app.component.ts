@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, Inject, OnInit } from '@angular/core';
 import { Course } from './model/course';
 import { Observable } from 'rxjs';
 import { CoursesService } from './services/courses.service';
@@ -20,17 +20,28 @@ import { COURSES } from 'src/db-data';
   //   }
   // ]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, DoCheck {
   public allCourses: Course[];
   public allCourses$: Observable<Course[]>;
 
   constructor(private coursesService: CoursesService,
-    @Inject(Config_Token) private config: AppConfig) {
+    @Inject(Config_Token) private config: AppConfig,
+    private cd: ChangeDetectorRef) {
     console.log(`AppConfig is set up on ` + config.apiUrl);
   }
 
   ngOnInit() {
-    this.allCourses$ = this.coursesService.loadCourses();
+    this.coursesService.loadCourses()
+      .subscribe(courses => {
+        this.allCourses = courses
+        this.cd.markForCheck();
+      })
+  }
+
+  ngDoCheck() {
+    // this doesn't update all courses on UI due to OnPush limitations
+    console.log("Start ngDoCheck");
+    this.cd.markForCheck();
   }
 
   save(course: Course) {

@@ -3,8 +3,10 @@ import {
     AfterViewInit,
     Attribute,
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ContentChildren,
+    DoCheck,
     ElementRef,
     EventEmitter,
     Input,
@@ -31,7 +33,8 @@ export class CourseCardComponent implements OnInit {
     @Output('courseChanged')
     courseEmitter = new EventEmitter<Course>();
 
-    constructor(@Attribute('testType') private type: string // allows not to track changes
+    constructor(@Attribute('testType') private type: string, // allows not to track changes
+        private cd: ChangeDetectorRef
     ) {
     }
 
