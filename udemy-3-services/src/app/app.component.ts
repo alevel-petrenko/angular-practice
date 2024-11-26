@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Course } from './model/course';
 import { Observable } from 'rxjs';
 import { CoursesService } from './services/courses.service';
@@ -11,37 +11,30 @@ import { COURSES } from 'src/db-data';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
-  // providers: [
-  //   {
-  //     provide: Courses_Service,
-  //     useFactory: coursesServiceProvider,
-  //     deps: [HttpClient]
-  //   }
-  // ]
 })
-export class AppComponent implements OnInit, DoCheck {
+export class AppComponent implements OnInit, OnDestroy {
   public allCourses: Course[];
   public allCourses$: Observable<Course[]>;
 
-  constructor(private coursesService: CoursesService,
-    @Inject(Config_Token) private config: AppConfig,
-    private cd: ChangeDetectorRef) {
-    console.log(`AppConfig is set up on ` + config.apiUrl);
+  constructor(private coursesService: CoursesService) {
+    console.log('constructor');
+  }
+
+  ngOnDestroy(): void {
+    console.log('ngOnDestroy');
   }
 
   ngOnInit() {
+    console.log('ngOnInit');
+
     this.coursesService.loadCourses()
       .subscribe(courses => {
         this.allCourses = courses
-        this.cd.markForCheck();
       })
   }
 
-  ngDoCheck() {
-    // this doesn't update all courses on UI due to OnPush limitations
-    console.log("Start ngDoCheck");
-    this.cd.markForCheck();
+  onCleared() {
+    this.allCourses = undefined;
   }
 
   save(course: Course) {

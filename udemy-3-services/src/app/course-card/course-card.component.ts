@@ -10,6 +10,7 @@ import {
     ElementRef,
     EventEmitter,
     Input,
+    OnDestroy,
     OnInit,
     Output,
     QueryList,
@@ -21,9 +22,8 @@ import { Course } from '../model/course';
     selector: 'course-card',
     templateUrl: './course-card.component.html',
     styleUrls: ['./course-card.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CourseCardComponent implements OnInit {
+export class CourseCardComponent implements OnInit, OnDestroy {
     @Input()
     course: Course;
 
@@ -34,12 +34,16 @@ export class CourseCardComponent implements OnInit {
     courseEmitter = new EventEmitter<Course>();
 
     constructor(@Attribute('testType') private type: string, // allows not to track changes
-        private cd: ChangeDetectorRef
     ) {
+        console.log('constructor');
     }
 
+    ngOnDestroy(): void {
+        console.log('ngOnDestroy');
+      }
+
     ngOnInit(): void {
-        console.log(this.type);
+        console.log('ngOnInit');
     }
 
     // onTitleChanged(newtitle: string) {

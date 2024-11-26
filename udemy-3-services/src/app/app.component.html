@@ -2,8 +2,11 @@
   <img class="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
 </div>
 
-<div>
+<div class="demo">
+  <button (click)="onCleared()">Clear all</button>
+</div>
 
+<div *ngIf="allCourses">
   <!-- <div class="courses">
     <course-card *ngFor="let course of (allCourses$ | async )" [course]="course"> -->
   <div class="courses">
