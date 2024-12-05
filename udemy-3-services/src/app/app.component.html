@@ -10,11 +10,12 @@
   <!-- <div class="courses">
     <course-card *ngFor="let course of (allCourses$ | async )" [course]="course"> -->
   <div class="courses">
-    <course-card *ngFor="let course of allCourses; let i = index" (courseChanged)="save($event)" testType='custom type'
-      [course]="course" [cardIndex]="i + 1">
+    @for (course of (allCourses | categoryFilter: 'Advanced' ); track course) {
+      <course-card (courseChanged)="save($event)" testType='custom type' [course]="course" [cardIndex]="i + 1">
 
-      <course-image [src]="course.iconUrl"></course-image>
+        <course-image [src]="course.iconUrl"></course-image>
 
-    </course-card>
+      </course-card>
+    }
   </div>
 </div>
