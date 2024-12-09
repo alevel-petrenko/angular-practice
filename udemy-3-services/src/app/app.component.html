@@ -3,19 +3,22 @@
 </div>
 
 <div class="demo">
-  <button (click)="onCleared()">Clear all</button>
+  <button (click)="onCleared()" i18n>Clear all</button>
 </div>
 
 <div *ngIf="allCourses">
   <!-- <div class="courses">
     <course-card *ngFor="let course of (allCourses$ | async )" [course]="course"> -->
+
+  <h4 i18n="welcome message|Greet the user@@customId">Welcome to our course</h4>
+
   <div class="courses">
-    @for (course of (allCourses | categoryFilter: 'Advanced' ); track course) {
-      <course-card (courseChanged)="save($event)" testType='custom type' [course]="course" [cardIndex]="i + 1">
+    @for (course of allCourses; track course) {
+    <course-card (courseChanged)="save($event)" testType='custom type' [course]="course" [cardIndex]="$index + 1">
 
-        <course-image [src]="course.iconUrl"></course-image>
+      <course-image [src]="course.iconUrl"></course-image>
 
-      </course-card>
+    </course-card>
     }
   </div>
 </div>

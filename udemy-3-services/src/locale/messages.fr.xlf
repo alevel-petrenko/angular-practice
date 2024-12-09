@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="2303489635985691360" datatype="html">
+        <source>Clear all</source>
+        <target>Tout effacer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">6,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="customId" datatype="html">
+        <source>Welcome to our course</source>
+        <target>Bienvenue à notre cours</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">13,17</context>
+        </context-group>
+        <note priority="1" from="description">Greet the user</note>
+        <note priority="1" from="meaning">welcome message</note>
+      </trans-unit>
+      <trans-unit id="8856905278208146821" datatype="html">
+        <source> <x id="ICU" equiv-text="{
+        course.category,
+        select,
+        BEGINNER {Beginner}
+        INTERMEDIATE {Intermediate}
+        ADVANCED {Advanced}
+      }"/> </source>
+        <target> <x id="ICU" equiv-text="{
+        course.category,
+        select,
+        BEGINNER {Débutant}
+        INTERMEDIATE {Intermédiaire}
+        ADVANCED {Avancé}
+      }"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/courses/course-card/course-card.component.html</context>
+          <context context-type="linenumber">15,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4587612384756081379" datatype="html">
+        <source>{VAR_SELECT, select, BEGINNER {Beginner} INTERMEDIATE {Intermediate} ADVANCED {Advanced}}</source>
+        <target>{VAR_SELECT, select, BEGINNER {Débutant} INTERMEDIATE {Intermédiaire} ADVANCED {Avancé}}</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/courses/course-card/course-card.component.html</context>
+          <context context-type="linenumber">16,23</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
