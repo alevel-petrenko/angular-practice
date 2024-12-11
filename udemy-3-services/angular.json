@@ -4,6 +4,12 @@
   "newProjectRoot": "projects",
   "projects": {
     "angular-course": {
+      "i18n": {
+        "sourceLocale": "en",
+        "locales": {
+          "fr": "src/locale/messages.fr.xlf"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -63,6 +69,12 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true
+            },
+            "fr": {
+              "outputPath": "dist/angular-course-fr",
+              "localize": [
+                "fr"
+              ]
             }
           }
         },
@@ -74,6 +86,9 @@
           "configurations": {
             "production": {
               "buildTarget": "angular-course:build:production"
+            },
+            "fr": {
+              "buildTarget": "angular-course:build:fr"
             }
           }
         },
