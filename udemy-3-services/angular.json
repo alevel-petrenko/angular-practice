@@ -74,8 +74,7 @@
               "outputPath": "dist/angular-course-fr",
               "localize": [
                 "fr"
-              ],
-              // "optimization": true
+              ]
             }
           }
         },
