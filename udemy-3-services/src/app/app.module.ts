@@ -7,7 +7,8 @@ import { NgxUnlessDirective } from './directives/ngx-unless.directive';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { CoursesModule } from './courses/courses.module';
 
-@NgModule({ declarations: [
+@NgModule({ 
+    declarations: [
         AppComponent,
         HighlightedDirective,
         NgxUnlessDirective
@@ -19,5 +20,6 @@ import { CoursesModule } from './courses/courses.module';
         CoursesModule,
         BrowserAnimationsModule,
     ],
-    providers: [provideHttpClient(withInterceptorsFromDi())] })
+    providers: [provideHttpClient(withInterceptorsFromDi())],
+})
 export class AppModule { }
