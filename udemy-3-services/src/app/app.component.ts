@@ -7,11 +7,20 @@ import { COURSES } from 'src/db-data';
 import { CoursesService } from './courses/services/courses.service';
 import { createCustomElement } from '@angular/elements';
 import { CourseTitleComponent } from './courses/course-title/course-title.component';
+import { CourseCardComponent } from './courses/course-card/course-card.component';
+import { CourseImageComponent } from './courses/course-image/course-image.component';
+import { CommonModule, NgFor, NgForOf, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  standalone: true,
+  imports: [
+    CourseCardComponent,
+    CourseImageComponent,
+    CommonModule
+  ]
 })
 export class AppComponent implements OnInit, OnDestroy {
   public allCourses: Course[];

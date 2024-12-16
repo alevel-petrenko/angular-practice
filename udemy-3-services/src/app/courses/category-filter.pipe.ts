@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from "@angular/core";
 import { Course } from "../model/course";
 
 @Pipe({
-    name: 'categoryFilter'
+    name: 'categoryFilter',
+    standalone: true,
 })
 
 export class CategoryFilterPipe implements PipeTransform {
