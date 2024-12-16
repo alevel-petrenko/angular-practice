@@ -1,7 +1,7 @@
 <div class="course-card" *ngIf="course" #container>
 
   <div class="course-title">
-    {{ cardIndex + '. ' + course.description }}
+    <course-title [title]="cardIndex + '. ' + course.description"></course-title>
   </div>
 
   <ng-content select="course-image" *ngIf="course.iconUrl"></ng-content>
@@ -13,11 +13,11 @@
   <div class="course-category">
     <div class="category" i18n>
       {
-        course.category,
-        select,
-        BEGINNER {Beginner}
-        INTERMEDIATE {Intermediate}
-        ADVANCED {Advanced}
+      course.category,
+      select,
+      BEGINNER {Beginner}
+      INTERMEDIATE {Intermediate}
+      ADVANCED {Advanced}
       }
     </div>
   </div>

@@ -21,11 +21,16 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { Course } from '../../model/course';
+import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'course-card',
     templateUrl: './course-card.component.html',
     styleUrls: ['./course-card.component.css'],
+    standalone: true,
+    imports: [
+        NgIf,
+    ]
 })
 export class CourseCardComponent implements OnInit, OnDestroy, OnChanges, AfterContentInit, AfterContentChecked, AfterViewChecked {
     @Input()
