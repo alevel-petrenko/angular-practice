@@ -6,11 +6,12 @@
   <button (click)="onCleared()" i18n>Clear all</button>
 </div>
 
-<div *ngIf="allCourses">
+<div>
   <!-- <div class="courses">
     <course-card *ngFor="let course of (allCourses$ | async )" [course]="course"> -->
 
-  <h4 style="text-align: center" i18n="welcome message|Greet the user@@customId">Welcome to our course</h4>
+  @defer {
+  <h4 class="center" i18n="welcome message|Greet the user@@customId">Welcome to our course</h4>
 
   <div class="courses">
     @for (course of allCourses; track course) {
@@ -21,4 +22,12 @@
     </course-card>
     }
   </div>
+  }
+  <!-- conditions in seconds -->
+  @loading(minimum 3s; after 1s) {
+  <h2 class="center">...LOADING...</h2>
+  }
+  @placeholder {
+  <h2 class="center">MY PLACEHOLDER!</h2>
+  }
 </div>
