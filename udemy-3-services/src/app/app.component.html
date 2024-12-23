@@ -2,6 +2,10 @@
   <img class="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
 </div>
 
+<div class="viewport-high"></div>
+
+<h1 #title>Trigger viewport</h1>
+
 <div class="demo">
   <button (click)="onCleared()" i18n>Clear all</button>
 </div>
@@ -10,7 +14,8 @@
   <!-- <div class="courses">
     <course-card *ngFor="let course of (allCourses$ | async )" [course]="course"> -->
 
-  @defer {
+  <!-- @defer(on timer(10s); prefetch on timer(5s)) { -->
+  @defer(on viewport(title); prefetch on idle) {
   <h4 class="center" i18n="welcome message|Greet the user@@customId">Welcome to our course</h4>
 
   <div class="courses">
@@ -24,10 +29,13 @@
   </div>
   }
   <!-- conditions in seconds -->
-  @loading(minimum 3s; after 1s) {
+  @loading {
   <h2 class="center">...LOADING...</h2>
   }
   @placeholder {
   <h2 class="center">MY PLACEHOLDER!</h2>
+  }
+  @error {
+  <h2 class="center">it's an error occured during defer</h2>
   }
 </div>
