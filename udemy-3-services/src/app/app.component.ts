@@ -25,7 +25,15 @@ import { CommonModule, NgFor, NgForOf, NgIf } from '@angular/common';
 export class AppComponent implements OnInit, OnDestroy {
   public allCourses: Course[];
   public allCourses$: Observable<Course[]>;
+  public displayOn: boolean = false;
+  public prefetchOn: boolean = false;
 
+  onPrefetch() {
+    this.prefetchOn = true;
+  }
+  onDisplay() {
+    this.displayOn = true;
+  }
   constructor(private coursesService: CoursesService,
     private injector: Injector
   ) {
@@ -51,7 +59,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   onCleared() {
     // this.allCourses = undefined;
-    var newCourse = {...this.allCourses[0], description:'My desc'}
+    var newCourse = { ...this.allCourses[0], description: 'My desc' }
     this.allCourses[0] = newCourse;
   }
 

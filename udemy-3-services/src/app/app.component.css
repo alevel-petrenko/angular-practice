@@ -8,13 +8,18 @@
   max-height: 55px;
 }
 
-
 .courses {
     max-width: 400px;
     margin: 50px auto;
 }
 
+.center {
+  text-align: center
+}
 
-
-
-
+.viewblock-high {
+  border: 5px solid red;
+  min-height: 400px;
+  margin: 10px;
+  padding: 10px;
+}

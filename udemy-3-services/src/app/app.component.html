@@ -2,15 +2,23 @@
   <img class="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
 </div>
 
-<div class="demo">
-  <button (click)="onCleared()" i18n>Clear all</button>
+<div #prefetch class="center viewblock-high">
+  <input placeholder="Type to triger prefetch">
+  <br>
+  <button #display (click)="onPrefetch()" style="margin-right: 20px;">Prefetch</button>
+  <button (click)="onDisplay()">Display content</button>
 </div>
 
-<div *ngIf="allCourses">
+<div>
   <!-- <div class="courses">
     <course-card *ngFor="let course of (allCourses$ | async )" [course]="course"> -->
 
-  <h4 style="text-align: center" i18n="welcome message|Greet the user@@customId">Welcome to our course</h4>
+  <!-- @defer(on timer(10s); prefetch on timer(5s)) { -->
+  <!-- @defer(on viewport(title); prefetch on idle) { -->
+  <!-- @defer(on interaction(display); prefetch on interaction(prefetch)) { -->
+  <!-- @defer(on interaction(display); prefetch on hover(prefetch)) { -->
+  @defer(when displayOn; prefetch when prefetchOn) {
+  <h4 class="center" i18n="welcome message|Greet the user@@customId">Welcome to our course</h4>
 
   <div class="courses">
     @for (course of allCourses; track course) {
@@ -21,4 +29,15 @@
     </course-card>
     }
   </div>
+  }
+  <!-- conditions in seconds -->
+  @loading {
+  <h2 class="center">...LOADING...</h2>
+  }
+  @placeholder {
+  <h2 class="center">MY PLACEHOLDER!</h2>
+  }
+  @error {
+  <h2 class="center">it's an error occured during defer</h2>
+  }
 </div>
