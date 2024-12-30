@@ -1,0 +1,13 @@
+<div class="top-menu">
+    <img class="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
+</div>
+
+<div>
+    <div class="courses">
+        <div>counter: {{counter()}}</div>
+        <div>10X counter: {{tenXCounter()}}</div>
+        <div>course: {{course().title}}</div>
+        <div>courses: {{courses().join(', ')}}</div>
+        <button (click)="increment()">Increment</button>
+    </div>
+</div>
