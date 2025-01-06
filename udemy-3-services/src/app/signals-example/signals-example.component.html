@@ -8,6 +8,7 @@
         <div>10X counter: {{tenXCounter()}}</div>
         <div>course: {{course().title}}</div>
         <div>courses: {{courses().join(', ')}}</div>
-        <button (click)="increment()">Increment</button>
+        <button style="margin-right: 10px;" (click)="increment()">Increment</button>
+        <button (click)="onCleanup()">Cleanup</button>
     </div>
 </div>

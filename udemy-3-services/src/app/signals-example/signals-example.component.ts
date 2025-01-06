@@ -1,4 +1,5 @@
-import { Component, computed, effect, signal } from '@angular/core';
+import { Component, computed, effect, EffectRef, signal } from '@angular/core';
+import { CounterService } from '../services/counter.service';
 
 @Component({
   selector: 'signals-example',
@@ -8,16 +9,22 @@ import { Component, computed, effect, signal } from '@angular/core';
   styleUrl: './signals-example.component.css'
 })
 export class SignalsExampleComponent {
-  constructor(){
-    effect(() => {
-      const counterValue = this.counter();
+  effectRef: EffectRef;
+
+  constructor(private counterService: CounterService){
+    this.effectRef = effect((onCleanup) => {
+      onCleanup(() => {
+        console.log("Cleanup's finished!")
+      })
+
+      const counterValue = this.counterService.counter();
       const multipleCounterValue = this.tenXCounter();
 
-      console.log(`Update value: counter is ${counterValue}, multiple is ${multipleCounterValue}.`)
+      console.log(`Updated values: counter is ${counterValue}, multiple is ${multipleCounterValue}.`)
     })
   }
 
-  counter = signal(0);
+  counter = this.counterService.counter;
 
   tenXCounter = computed(() => {
     // dependencies for derived signals are created during the last `computed` execution
@@ -36,11 +43,16 @@ export class SignalsExampleComponent {
   ])
 
   increment() {
-    this.counter.update(val => val + 1);
+    this.counterService.increment();
     this.course.update(course => ({
       ...course,
       title: `The best course updated`
     }));
     this.courses.update(courses => [...courses, "Completely new course"]);
+  }
+
+  onCleanup() {
+    this.effectRef.destroy();
+    console.log("onCleanup is called!")
   }
 }
