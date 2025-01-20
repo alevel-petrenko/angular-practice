@@ -19,15 +19,19 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.reloadCourses();
+    console.log('HomeComponent initialized!')
+  }
+
+  public reloadCourses(): void {
     const allCourses$ = this.coursesService.loadAllCourses()
-      .pipe(
-        map(courses => courses.sort(sortCoursesBySeqNo))
-      );
+    .pipe(
+      map(courses => courses.sort(sortCoursesBySeqNo))
+    );
+
     this.beginnerCourses$ = allCourses$.pipe(
       map(courses => courses.filter(course => course.category === "BEGINNER")));
     this.advancedCourses$ = allCourses$.pipe(
       map(courses => courses.filter(course => course.category === "ADVANCED")));
-
-    console.log('HomeComponent initialized!')
   }
 }

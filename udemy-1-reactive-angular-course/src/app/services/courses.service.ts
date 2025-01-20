@@ -18,6 +18,13 @@ export class CoursesService {
                 map(res => res['payload']),
                 // shareReplay({ bufferSize: 1, refCount: true })
                 shareReplay(1)
-            )
+            );
+    }
+
+    public saveCourse(courseId: string, changes: Partial<Course>): Observable<any> {
+        return this.http.put(`/api/courses/${courseId}`, changes).
+            pipe(
+                shareReplay()
+            );
     }
 }

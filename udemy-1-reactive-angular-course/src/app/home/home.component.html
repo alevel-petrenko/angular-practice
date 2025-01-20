@@ -3,11 +3,11 @@
   <h3>All Courses</h3>
 
   <mat-tab-group>
-    <mat-tab [label]="'b e g i n e r'">
-      <courses-card-list [courses]="beginnerCourses$ | async" />
+    <mat-tab [label]="'B e g i n n e r'">
+      <courses-card-list [courses]="beginnerCourses$ | async" (coursesChanged)="reloadCourses()" />
     </mat-tab>
-    <mat-tab [label]="'a d v a n c e d'">
-      <courses-card-list [courses]="advancedCourses$ | async" />
+    <mat-tab [label]="'A d v a n c e d'">
+      <courses-card-list [courses]="advancedCourses$ | async" (coursesChanged)="reloadCourses()" />
     </mat-tab>
   </mat-tab-group>
 </div>
