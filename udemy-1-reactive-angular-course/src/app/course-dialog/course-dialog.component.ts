@@ -10,7 +10,8 @@ import { LoadingService } from '../loading/loading.service';
     selector: 'course-dialog',
     templateUrl: './course-dialog.component.html',
     styleUrls: ['./course-dialog.component.css'],
-    standalone: false
+    standalone: false,
+    providers: [LoadingService]
 })
 export class CourseDialogComponent implements AfterViewInit {
 
