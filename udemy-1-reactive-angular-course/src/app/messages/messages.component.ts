@@ -10,21 +10,15 @@ import {tap} from 'rxjs/operators';
     standalone: false
 })
 export class MessagesComponent implements OnInit {
-
+  showMessage = false;
+  messages = [];
 
   constructor() {
-
   }
-
+ 
   ngOnInit() {
-
-
   }
-
 
   onClose() {
-
-
   }
-
 }

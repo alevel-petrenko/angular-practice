@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Inject } from '@angular/core';
+import { Component, ElementRef, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { Course } from "../model/course";
@@ -13,10 +13,9 @@ import { LoadingService } from '../loading/loading.service';
     standalone: false,
     providers: [LoadingService]
 })
-export class CourseDialogComponent implements AfterViewInit {
+export class CourseDialogComponent {
 
     form: FormGroup;
-
     course: Course;
 
     constructor(
@@ -36,13 +35,11 @@ export class CourseDialogComponent implements AfterViewInit {
         });
     }
 
-    ngAfterViewInit() {
-
-    }
-
     save() {
         const changes = this.form.value;
-        this.coursesService.saveCourse(this.course.id, changes)
+        const saveLoaded$ = this.coursesService.saveCourse(this.course.id, changes);
+
+        this.loadingService.showLoaderUntilCompleted(saveLoaded$)
             .subscribe({
                 next: value => {
                     console.log("processed", value);
@@ -60,5 +57,4 @@ export class CourseDialogComponent implements AfterViewInit {
     close() {
         this.dialogRef.close();
     }
-
 }
