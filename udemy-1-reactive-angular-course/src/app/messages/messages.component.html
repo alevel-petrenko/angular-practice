@@ -1,11 +1,11 @@
+@if(messages$ |async; as messages) {
 @if(showMessage){
 <div class="messages-container">
     @for(item of messages; track index){
-    <div class="message">
-        {{item}}
-    </div>
+    <div class="message">{{item}}</div>
     }
 
     <mat-icon class="close" (click)="onClose()">close</mat-icon>
 </div>
+}
 }
