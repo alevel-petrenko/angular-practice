@@ -4,7 +4,7 @@ import { filter } from "rxjs/operators";
 
 Injectable();
 export class MessagesService {
-    messageSubject = new BehaviorSubject<string[]>([]);
+    private messageSubject = new BehaviorSubject<string[]>([]);
 
     messages$ = this.messageSubject.asObservable()
         .pipe(

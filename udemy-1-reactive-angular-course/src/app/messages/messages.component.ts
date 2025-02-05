@@ -25,5 +25,6 @@ export class MessagesComponent implements OnInit {
   }
 
   onClose() {
+    this.showMessage = false;
   }
 }
