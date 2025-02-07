@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Course, sortCoursesBySeqNo } from '../model/course';
-import { catchError, map } from 'rxjs/operators';
-import { CoursesService } from '../services/courses.service';
-import { Observable, throwError } from 'rxjs';
-import { LoadingService } from '../loading/loading.service';
-import { MessagesService } from '../messages/messages.service';
+import { Observable } from 'rxjs';
+import { CoursesStore } from '../services/courses.store';
 
 @Component({
   selector: 'home',
@@ -17,33 +14,16 @@ export class HomeComponent implements OnInit {
   advancedCourses$: Observable<Course[]>;
 
   constructor(
-    private coursesService: CoursesService,
-    private loadingService: LoadingService,
-    private messagesService: MessagesService) {
+    private coursesStore: CoursesStore,) {
   }
 
   ngOnInit() {
     this.reloadCourses();
-    console.log('HomeComponent initialized!')
+    console.log('HomeComponent initialized!');
   }
 
   public reloadCourses(): void {
-    const allCourses$ = this.coursesService.loadAllCourses()
-      .pipe(
-        map(courses => courses.sort(sortCoursesBySeqNo)),
-        catchError(error => {
-          const errorMessage = 'Error during courses loading!';
-          this.messagesService.showMessages(errorMessage);
-          console.log(errorMessage, error);
-          return throwError(error);
-        })
-      );
-
-    const coursesLoaded$ = this.loadingService.showLoaderUntilCompleted(allCourses$);
-
-    this.beginnerCourses$ = coursesLoaded$.pipe(
-      map(courses => courses.filter(course => course.category === "BEGINNER")));
-    this.advancedCourses$ = coursesLoaded$.pipe(
-      map(courses => courses.filter(course => course.category === "ADVANCED")));
+    this.beginnerCourses$ = this.coursesStore.filterByCategory("BEGINNER");
+    this.advancedCourses$ = this.coursesStore.filterByCategory("ADVANCED");
   }
 }
