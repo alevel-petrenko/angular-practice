@@ -1,26 +1,33 @@
-import { AfterViewInit, Component, ElementRef, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { Course } from "../model/course";
 import moment from 'moment';
-import { CoursesService } from '../services/courses.service';
+import { LoadingService } from '../loading/loading.service';
+import { MessagesService } from '../messages/messages.service';
+import { CoursesStore } from '../services/courses.store';
 
 @Component({
     selector: 'course-dialog',
     templateUrl: './course-dialog.component.html',
     styleUrls: ['./course-dialog.component.css'],
-    standalone: false
+    standalone: false,
+    providers: [
+        LoadingService,
+        MessagesService
+    ]
 })
-export class CourseDialogComponent implements AfterViewInit {
+export class CourseDialogComponent {
 
     form: FormGroup;
-
     course: Course;
 
     constructor(
         private fb: FormBuilder,
+        private coursesStore: CoursesStore,
+        private loadingService: LoadingService,
+        private messagesService: MessagesService,
         private dialogRef: MatDialogRef<CourseDialogComponent>,
-        private coursesService: CoursesService,
         @Inject(MAT_DIALOG_DATA) course: Course) {
 
         this.course = course;
@@ -33,29 +40,15 @@ export class CourseDialogComponent implements AfterViewInit {
         });
     }
 
-    ngAfterViewInit() {
-
-    }
-
     save() {
         const changes = this.form.value;
-        this.coursesService.saveCourse(this.course.id, changes)
-            .subscribe({
-                next: value => {
-                    console.log("processed", value);
-                    this.dialogRef.close(value);
-                },
-                error: err => {
-                    console.log(err);
-                },
-                complete: () => {
-                    console.log(`course ${this.course.description} is saved!`)
-                },
-            })
+        this.coursesStore.saveCourse(this.course.id, changes)
+            .subscribe();
+
+        this.dialogRef.close(changes);
     }
 
     close() {
         this.dialogRef.close();
     }
-
 }
