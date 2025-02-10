@@ -4,10 +4,10 @@
 
   <mat-tab-group>
     <mat-tab [label]="'B e g i n n e r'">
-      <courses-card-list [courses]="beginnerCourses$ | async" (coursesChanged)="reloadCourses()" />
+      <courses-card-list [courses]="beginnerCourses$ | async" />
     </mat-tab>
     <mat-tab [label]="'A d v a n c e d'">
-      <courses-card-list [courses]="advancedCourses$ | async" (coursesChanged)="reloadCourses()" />
+      <courses-card-list [courses]="advancedCourses$ | async" />
     </mat-tab>
   </mat-tab-group>
 </div>
