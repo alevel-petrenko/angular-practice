@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, throwError } from "rxjs";
+import { BehaviorSubject, Observable, of, throwError } from "rxjs";
 import { Course, sortCoursesBySeqNo } from "../model/course";
 import { catchError, map, tap } from "rxjs/operators";
 import { MessagesService } from "../messages/messages.service";
@@ -18,6 +18,32 @@ export class CoursesStore{
         private loadingService: LoadingService,
         private messagesService: MessagesService
      ) {
+        this.loadAllCourses();
+    }
+
+    saveCourse(coursesId: string, changes: Partial<Course>): Observable<any> {
+        // .pipe(
+        //     catchError(err => {
+        //         const error = "Couldn't save course!";
+        //         console.log('Error:', error);
+        //         this.messagesService.showMessages(error);
+        //         return throwError(err);
+        //     })
+        // )
+        return of([]);
+    }
+
+    filterByCategory(category: string): Observable<Course[]> {
+        return this.courses$
+            .pipe(
+                map(courses => 
+                    courses.filter(course => course.category.toLowerCase() === category.toLowerCase())
+                    .sort(sortCoursesBySeqNo)
+                )
+            )
+    }
+
+    private loadAllCourses(): void {
         const loadCourses$ = this.http.get<Course[]>('/api/courses')
             .pipe(
                 map(courses => courses['payload']),
@@ -32,15 +58,5 @@ export class CoursesStore{
 
         this.loadingService.showLoaderUntilCompleted(loadCourses$)
             .subscribe();
-    }
-
-    filterByCategory(category: string): Observable<Course[]> {
-        return this.courses$
-            .pipe(
-                map(courses => 
-                    courses.filter(course => course.category.toLowerCase() === category.toLowerCase())
-                    .sort(sortCoursesBySeqNo)
-                )
-            )
     }
 }

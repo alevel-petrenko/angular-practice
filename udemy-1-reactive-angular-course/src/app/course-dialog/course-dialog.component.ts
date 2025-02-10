@@ -1,13 +1,11 @@
-import { Component, ElementRef, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { Course } from "../model/course";
 import moment from 'moment';
-import { CoursesService } from '../services/courses.service';
 import { LoadingService } from '../loading/loading.service';
 import { MessagesService } from '../messages/messages.service';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { CoursesStore } from '../services/courses.store';
 
 @Component({
     selector: 'course-dialog',
@@ -26,7 +24,7 @@ export class CourseDialogComponent {
 
     constructor(
         private fb: FormBuilder,
-        private coursesService: CoursesService,
+        private coursesStore: CoursesStore,
         private loadingService: LoadingService,
         private messagesService: MessagesService,
         private dialogRef: MatDialogRef<CourseDialogComponent>,
@@ -44,29 +42,10 @@ export class CourseDialogComponent {
 
     save() {
         const changes = this.form.value;
-        const saveCourse$ = this.coursesService.saveCourse(this.course.id, changes)
-            .pipe(
-                catchError(err => {
-                    const error = "Couldn't save course!";
-                    console.log('Error:', error);
-                    this.messagesService.showMessages(error);
-                    return throwError(err);
-                })
-            );
+        this.coursesStore.saveCourse(this.course.id, changes)
+            .subscribe();
 
-        this.loadingService.showLoaderUntilCompleted(saveCourse$)
-            .subscribe({
-                next: value => {
-                    console.log("processed", value);
-                    this.dialogRef.close(value);
-                },
-                error: err => {
-                    console.log(err);
-                },
-                complete: () => {
-                    console.log(`course ${this.course.description} is saved!`)
-                },
-            })
+        this.dialogRef.close(changes);
     }
 
     close() {
