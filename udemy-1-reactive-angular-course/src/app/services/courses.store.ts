@@ -21,16 +21,28 @@ export class CoursesStore{
         this.loadAllCourses();
     }
 
-    saveCourse(coursesId: string, changes: Partial<Course>): Observable<any> {
-        // .pipe(
-        //     catchError(err => {
-        //         const error = "Couldn't save course!";
-        //         console.log('Error:', error);
-        //         this.messagesService.showMessages(error);
-        //         return throwError(err);
-        //     })
-        // )
-        return of([]);
+    saveCourse(courseId: string, changes: Partial<Course>): Observable<any> {
+        const oldCourses = this.subject.getValue();
+        const oldCourseIndex = oldCourses.findIndex(course => course.id === courseId);
+
+        const newCourse: Course = {
+            ...oldCourses[oldCourseIndex],
+            ...changes
+        };
+
+        const newCourses: Course[] = oldCourses.slice(0);
+        newCourses[oldCourseIndex] = newCourse;
+        this.subject.next(newCourses);
+
+        return this.http.put(`/api/courses/${courseId}`, changes)
+            .pipe(
+                catchError(err => {
+                    const error = "Couldn't save course!";
+                    console.log('Error:', error);
+                    this.messagesService.showMessages(error);
+                    return throwError(err);
+                })
+            )
     }
 
     filterByCategory(category: string): Observable<Course[]> {
