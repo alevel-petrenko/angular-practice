@@ -1,7 +1,5 @@
-
-
-export interface User {
-  id:string;
-  email:string;
-  pictureUrl:string;
+export interface IUser {
+  id: string;
+  email: string;
+  pictureUrl: string;
 }
