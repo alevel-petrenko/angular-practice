@@ -15,6 +15,7 @@ import {
 } from 'rxjs/operators';
 import {merge, fromEvent, Observable, concat} from 'rxjs';
 import {Lesson} from '../model/lesson';
+import { CoursesService } from '../services/courses.service';
 
 
 @Component({
@@ -24,8 +25,13 @@ import {Lesson} from '../model/lesson';
     standalone: false
 })
 export class SearchLessonsComponent implements OnInit {
+  searchedLessons$: Observable<Lesson[]>;
 
-  constructor() {
+  onClick(searchValue: string) {
+    this.searchedLessons$ = this.coursesService.searchLessons(searchValue);
+  }
+
+  constructor(private coursesService: CoursesService) {
 
 
   }
