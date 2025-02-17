@@ -13,22 +13,30 @@
 
   <table class="lessons-table mat-elevation-z7">
 
+    @if (!currentLesson) {
+    @if (searchedLessons$ | async; as allLessons) {
+
     <thead>
       <th>#</th>
       <th>Description</th>
       <th>Duration</th>
     </thead>
 
-    @if (searchedLessons$ | async; as allLessons) {
     @for(lesson of allLessons; track index){
-    <tr class="lesson-row">
+    <tr class="lesson-row" (click)="openLesson(lesson)">
       <td class="seqno-cell">{{lesson.seqNo}}</td>
       <td class="description-cell">{{lesson.description}}</td>
       <td class="duration-cell">{{lesson.duration}}</td>
     </tr>
     }
-    } @else {
-    <td>There are no items</td>
+    }
+    }
+    @else {
+    <button mat-raised-button class="back-btn" (click)="onBack()">
+      <mat-icon>arrow_back_ios</mat-icon>
+      Back
+    </button>
+    <lesson [lesson]='currentLesson'></lesson>
     }
 
   </table>
