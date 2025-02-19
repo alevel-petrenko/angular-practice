@@ -22,6 +22,7 @@ export class AuthStore {
 
         this.isLoggedIn$ = this.user$
             .pipe(
+                tap(user => console.log('User:', user)),
                 map(user => !!user)
             );
         this.isLoggedOut$ = this.isLoggedIn$
