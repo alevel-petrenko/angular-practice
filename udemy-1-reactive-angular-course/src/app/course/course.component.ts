@@ -1,10 +1,10 @@
-import { Component, OnInit, } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Course } from '../model/course';
 import { Lesson } from '../model/lesson';
 import { combineLatest, Observable } from 'rxjs';
 import { CoursesService } from '../services/courses.service';
-import { map, tap } from 'rxjs/operators';
+import { map, startWith, tap } from 'rxjs/operators';
 
 
 interface CourseData {
@@ -16,7 +16,8 @@ interface CourseData {
   selector: 'course',
   templateUrl: './course.component.html',
   styleUrls: ['./course.component.css'],
-  standalone: false
+  standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseComponent implements OnInit {
 
@@ -29,8 +30,14 @@ export class CourseComponent implements OnInit {
   ngOnInit() {
     const courseId = this.route.snapshot.paramMap.get('courseId');
 
-    const course$ = this.coursesService.loadCourseById(courseId);
-    const lessons$ = this.coursesService.loadAllCourseLessons(courseId);
+    const course$ = this.coursesService.loadCourseById(courseId)
+      .pipe(
+        startWith(null)
+      );
+    const lessons$ = this.coursesService.loadAllCourseLessons(courseId)
+      .pipe(
+        startWith([])
+      );
 
     this.data$ = combineLatest([course$, lessons$])
       .pipe(
